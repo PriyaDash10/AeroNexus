@@ -1,89 +1,198 @@
-# AirGuard AI 2.0 — Complete Project
+# 🌍 AeroNexus – Spatial AI Air Quality Intelligence Platform
 
-An upgraded academic air-quality intelligence prototype based on the supplied AirGuard AI project.
+### Transforming Air Quality Data into Intelligent Environmental Insights
 
-## What is included
+AeroNexus is an AI-powered air quality monitoring and prediction platform designed to analyze environmental data, predict Air Quality Index (AQI), detect unusual pollution patterns, and visualize air quality insights through an interactive spatial dashboard.
 
-- `notebooks/AirGuard_AI_2_0_Complete.ipynb` — original end-to-end ML workflow plus advanced audit, comprehensive metrics, permutation importance, Isolation Forest anomaly detection, optional SHAP explainability and 3D exploratory analytics.
-- `app.py` — Streamlit application with glassmorphism / 3D-inspired UI.
-- `dataset/` — supplied air-pollution dataset.
-- `models/` — existing selected classifier, comparison table and exported metrics.
-- `outputs/` — location for generated notebook results.
-- `requirements.txt` — Python dependencies.
-- `run_app.bat` and `run_notebook.bat` — Windows launch helpers.
+The platform combines Machine Learning, real-time environmental data integration, and modern data visualization to make air quality information easier to understand and monitor.
 
-## Dashboard modules
+---
 
-1. Overview
-2. AQI Prediction
-3. Live AQI (Open-Meteo provider)
-4. AQI Forecast (provider forecast view; not an LSTM trained on the static CSV)
-5. AQI Map (provider current conditions for supported cities)
-6. Pollution Hotspots (historical city ranking from supplied dataset)
-7. Anomaly Detection (Isolation Forest)
-8. 3D Analytics (interactive Plotly 3D pollutant chart)
-9. Health Advisory (general AQI-category precautions)
-10. AQI Alerts
-11. Explainable AI
-12. PDF Report
-13. Data Explorer
-14. City Comparison
-15. Model Insights
-16. About
+## 🚀 Key Features
 
-## Setup (Windows / Anaconda)
+### 🌐 Spatial AI Dashboard
+- Interactive dashboard with a modern spatial interface.
+- 3D Earth visualization for an immersive environmental monitoring experience.
+- Dark glassmorphism UI with a futuristic design.
+- Visual representation of environmental insights.
 
-Use the same Python environment in which your original AirGuard AI model was trained.
+### 📊 Air Quality Analysis
+- Analyze air pollution and environmental parameters.
+- Explore air quality trends through interactive visualizations.
+- Understand pollution patterns using historical data.
 
-```bash
-cd path\to\AirGuard_AI_2_0
-python -m pip install -r requirements.txt
+### 🤖 AI-Powered AQI Prediction
+- Machine Learning-based AQI prediction.
+- Random Forest model for predictive analysis.
+- Data-driven insights to understand potential air quality conditions.
+
+### 🔍 Anomaly Detection
+- Isolation Forest-based anomaly detection.
+- Identify unusual environmental patterns.
+- Support the identification of abnormal pollution observations.
+
+### 🌤️ Live Environmental Data
+- Integration with the Open-Meteo API.
+- Retrieve live environmental information.
+- Combine external environmental data with analytical insights.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Frontend / Dashboard | Streamlit |
+| Data Processing | Pandas, NumPy |
+| Machine Learning | Scikit-learn |
+| Data Visualization | Plotly, Matplotlib |
+| Model Serialization | Joblib |
+| External API | Open-Meteo API |
+| Development Environment | VS Code, Jupyter Notebook |
+| Version Control | Git, GitHub |
+
+---
+
+## 🧠 Machine Learning Models
+
+AeroNexus incorporates machine learning techniques for environmental intelligence:
+
+**1. Random Forest**
+- Used for AQI prediction.
+- Learns patterns from environmental data.
+- Supports data-driven air quality analysis.
+
+**2. Isolation Forest**
+- Used for anomaly detection.
+- Identifies unusual patterns in environmental observations.
+- Helps highlight potentially abnormal pollution conditions.
+
+---
+
+## 📂 Project Structure
+
+```text
+AeroNEXUS/
+│
+├── app.py
+│
+├── models/
+│   ├── airguard_anomaly_detector.joblib
+│   ├── airguard_best_model.joblib
+│   ├── model_comparison.csv
+│   └── model_metrics.json
+│
+├── data/
+│
+├── notebooks/
+│
+├── docs/
+│
+├── assets/
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
-The supplied serialized classifier records scikit-learn 1.9.1, so the requirements pin is aligned to that version. Keep this version consistent when loading the saved Joblib model; cross-version loading can produce warnings or unpredictable behavior.
+*Note: The structure above represents the intended organization. Adjust folder and file names to match your actual repository.*
 
-## Run the notebook
+---
 
-From the project root:
+## ⚙️ Installation and Setup
+
+### Prerequisites
+- Python 3.12 recommended.
+- Git.
+- pip package manager.
+
+### 1. Clone the Repository
 
 ```bash
-python -m notebook notebooks/AirGuard_AI_2_0_Complete.ipynb
+git clone https://github.com/PriyaDash10/AeroNexus.git
 ```
 
-Run all cells from the top in order. The original workflow trains and exports the classifier. The AirGuard AI 2.0 chapter then generates the audit, detailed metrics, permutation importance, anomaly detector, optional SHAP outputs and 3D visualization.
-
-## Run the Streamlit dashboard
+### 2. Navigate to the Project Directory
 
 ```bash
-python -m streamlit run app.py
+cd AeroNexus
 ```
 
-Or double-click `run_app.bat`.
+### 3. Create a Virtual Environment
 
-Open the local URL printed by Streamlit (normally `http://localhost:8501`).
+```bash
+python -m venv .venv
+```
 
-## Live-data source
+### 4. Activate the Environment
 
-Live and forecast views call the Open-Meteo Air Quality API. Internet access is required. Provider values are modelled grid estimates and may differ from regulatory monitoring-station observations. If the API is unavailable, the live pages show an error rather than silently substituting fabricated readings.
+**Windows:**
 
-## Important scientific limitations
+```bash
+.venv\Scripts\activate
+```
 
-- The supplied dataset is cross-sectional and does not contain an observation timestamp suitable for time-series model training.
-- The supplied dataset does not contain trusted latitude/longitude columns. Historical hotspot analysis is therefore a city ranking, not a coordinate-accurate heat map.
-- The supervised model classifies the existing dataset's AQI category from four pollutant AQI sub-index values. It is not a future AQI forecast.
-- The app's forecast page displays provider forecast data. It must not be described as an LSTM trained on the supplied dataset.
-- Isolation Forest flags unusual pollutant-feature combinations. Anomaly flags are not proof of a hazardous event.
-- Health advisory text is general educational guidance, not a diagnosis or personal medical advice.
-- Live provider data is not an official local station reading. For official decisions, consult the relevant pollution-control authority.
+**Linux / macOS:**
 
-## Day 1 evaluation exports
+```bash
+source .venv/bin/activate
+```
 
-After running the notebook, inspect `outputs/airguard_ai_2_0/` for:
-- `target_dependence_audit.csv`
-- `class_wise_metrics.csv`
-- `evaluation_metrics.json`
-- `confusion_matrix.png`
-- `permutation_importance.csv` and `.png`
-- `anomaly_detection_results.csv`
-- `shap_importance.csv` and `.png` (only if SHAP succeeds)
-- `airguard_ai_2_0_summary.json`
+### 5. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Run the Application
+
+```bash
+streamlit run app.py
+```
+
+The application will be available at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## 📈 Project Objectives
+
+- Make air quality information more accessible and understandable.
+- Apply Machine Learning to environmental data analysis.
+- Predict AQI using trained machine learning models.
+- Detect unusual pollution patterns through anomaly detection.
+- Integrate live environmental information.
+- Present environmental insights through interactive spatial visualizations.
+
+---
+
+## 🔮 Future Enhancements
+
+- Real-time pollution monitoring across multiple geographical locations.
+- Advanced geospatial air quality visualization.
+- Improved predictive models using additional environmental parameters.
+- Interactive pollution hotspot identification.
+- Location-based air quality alerts and notifications.
+- Integration with additional environmental data sources.
+
+---
+
+## 👩‍💻 Developer
+
+**Priyadarshani Dash**
+
+MCA Student | AI & Machine Learning Enthusiast | Software Developer
+
+GitHub: [@PriyaDash10](https://github.com/PriyaDash10)
+
+---
+
+## ⭐ Support
+
+If you find this project interesting, consider giving the repository a ⭐ on GitHub.
+
+**AeroNexus – Making Environmental Intelligence Smarter, More Accessible, and More Visual.**
